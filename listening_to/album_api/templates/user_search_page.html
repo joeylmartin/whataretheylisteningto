@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load custom_tags %}
+        {% load static %}
+        
+        <link rel='stylesheet' href="{% static 'styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="{% static 'search_scripts.js' %}"></script>
+    </head>
+    <body>
+        <h1>Search for users.</h1>
+        <br>
+        <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+        <br>
+        <input class = 'username_entry' style="margin-bottom: 4%;"></input>
+        <div class='user-search-results'></div>
+        <br>
+        <a href='/' class='mini_link'>Return to the Home Page.</a>
+    </body>
+</html>

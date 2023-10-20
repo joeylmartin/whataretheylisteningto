@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    {% load custom_tags %}
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'home_page.css' %}">
+    <title>{{album.title}}</title>
+    <div class = 'album'>
+        <img src={{ album.album_art_url}} style="float:left;" class="album_art">
+        <h1 style="padding-top:0%">{{album.title}}</h1>
+    </div>
+    <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+    <h2>{{album.review}}</h2>
+    <h3>{% return_album_score album.score%}</h3>
+    
+    <a class="big_link" href="javascript:history.back()">Go Back</a>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load custom_tags %}
+        {% load static %}
+        <title>{{album.title}}</title>
+        <link rel='stylesheet' href="{% static 'styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    </head>
+    
+    <body>
+        <div class = 'album'>
+            <img src={{ album.album_art_url}} style="float:left;" class="album_art">
+            <h1 style="padding-top:0%">{{album.title}}</h1>
+        </div>
+        <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+
+        {% if album.review != None %}
+            <h2>{{album.review|linebreaks}}</h2>
+        {% endif %}
+
+        {% if album.score != None %}
+            <h3>{% return_album_score album.score%}</h3>
+        {% endif %}
+        
+        <a class="big_link" href="javascript:history.back()">Go Back</a>
+    </body>
+</html>

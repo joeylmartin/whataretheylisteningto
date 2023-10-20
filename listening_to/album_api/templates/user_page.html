@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load custom_tags %}
+        {% load static %}
+        {% load socialaccount %}
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        <link rel='stylesheet' href="{% static 'styles.css' %}">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8653552101289613"
+        crossorigin="anonymous"></script>
+        <title>What's {{ display_name }} listening to?</title>
+    </head>
+    
+    <div class='body'>
+
+        <h1>What's {{ display_name }} listening to?</h1>
+
+        <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+        
+        <h2>Currently, they are listening to:</h2>
+            
+            {% for album in lt_albums.data %}
+                <div class = 'album'>
+                    <img src={{ album.album_art_url}} style="float:left;" class="album_art">
+                    <div class='album_text_box'>
+
+                        {% if album.review != None and album.review != '' or album.score != None %}
+                            <a class="album_link" href={% return_review_link owner album.slug %}>{% return_album_text album.title album.creator%}</a>
+                        {% else %}
+                            <p class='album_text'>{% return_album_text album.title album.creator%}</p>
+                        {% endif %}
+
+                        {% if is_owner %}
+                            <br>
+                            <a class ="mini_link" href='{% return_album_edit_link album.slug%}'>Edit.</a>
+                        {% endif %}
+                    </div>
+                </div>      
+            
+            {% endfor %}
+            
+        
+        
+        <a class ="mini_link" style="padding-bottom: 0%;" href={% return_all_albums_link owner %}>See All Albums.</a>
+        
+        <!--{% if is_owner %} 
+            <a style="display:block;" class ="mini_link" href='{% return_album_edit_link '' %}'>Add Album.</a>
+        {% endif %}-->
+        <h2>Current Listening Series:</h2>
+
+        {% if collection.slug != 'the-backlog' %}
+            <a class="big_link" href={% return_collection_slug owner collection.slug %}>{{collection.title}}</a>
+            <br>
+            {% if is_owner %}
+                <a class ="mini_link" style="padding-bottom: 0%;" href='{% return_collection_edit_link collection.slug%}'>Edit.</a>
+                <br>
+            {% endif %}
+        {% else %}
+            <h2>No current listening series.</h2>
+        {% endif %}
+        <a class="mini_link" style="padding-bottom: 0%;" href={% return_all_collections_link owner %}>See other series.</a>
+        <br>
+        <a class="big_link" style="margin-top: 5%;" href={% return_backlog_link owner %}>The Backlog.</a>
+        <br>
+        <a class="big_link" style ="padding-top: 2%;" href={% return_all_lists_link owner %}>{{owner}}'s Lists.</a>
+        <br>
+        
+        {% if is_owner %}
+            <br>
+            <a class="big_link" style ="padding-top: 2%;" href={% return_add_link %}>Add.</a>
+            <br>
+        {% endif %}
+        
+        <h2>Have a submission?</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ backlog_form.album_title.label}}
+            {{ backlog_form.album_title }}
+            <br>
+            {{ backlog_form.artist.label}}
+            {{ backlog_form.artist }}
+            <br>
+            <input class="submit_button" type="submit" value="Submit.">
+        </form>
+        <br>
+        {% if is_owner == False and user.is_authenticated %}
+            <a class="mini_link" href={% return_user_page_link user.username %}>Return to your page.</a>
+        {% endif %}
+        <br>
+        <a href='/' class='mini_link'>Return to the Home Page.</a>
+        <h3>MMXXI</h3>
+        <h3>Joey Martin</h3>
+    </div>
+</html>

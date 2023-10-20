@@ -1,0 +1,38 @@
+
+{% load custom_tags %}
+{% load static %}
+
+<link rel='stylesheet' href="{% static 'topster_style.css' %}">
+<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="{% static 'topster_script.js' %}"></script>
+
+<div id="grid">
+    <div id="big_album_grid">
+        {% for i in 10|times %}
+            <ul class="album_container" id='{{forloop.counter}}' data-empty='true'></ul> 
+        {% endfor %}
+        
+    </div>
+    <br>
+    <div id="med_album_grid">
+        {% for i in 12|times %}
+            <ul class="album_container" id='{{forloop.counter}}' data-empty='true'></ul> 
+        {% endfor %}
+    </div>
+    <br>
+    <div id="small_album_grid">
+        {% for i in 20|times %}
+            <ul class="album_container" id='{{forloop.counter}}' data-empty='true'></ul> 
+        {% endfor %}
+    </div>
+    <script>
+        {% for album_object in list.album_objects %}
+            var temp = $(".album_container[data-empty='true']").first();
+            temp.append("<li class='album_element'><img src={{ album_object.album.album_art_url}} style='float:left;' class='album_art'></li>");
+            temp.attr('data-empty', 'false');
+        {% endfor %}
+    </script>
+</div>

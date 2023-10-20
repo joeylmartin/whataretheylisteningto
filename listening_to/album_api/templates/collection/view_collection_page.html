@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        {% load custom_tags %}
+        {% load static %}
+        <title>{{title}}</title>
+        <link rel='stylesheet' href="{% static 'styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="{% static 'collection_scripts.js' %}"></script>
+        <script src="{% static 'delete_scripts.js' %}"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8653552101289613"
+        crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <h1>{{ title }}</h1>
+        <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+        {% if is_owner %}
+            <br>
+            <div class = "action_selection" style="display: none;">
+
+                <h3 style="margin-top: 0%;">Choose action for selected albums.</h3>
+
+                <select  class='action_selection_box'>
+                    <option value="">----</option>
+                    <option value="move_collection">Change collection.</option>
+                    <option value="delete">Delete.</option>
+                </select>
+
+                <!--SELECTION BOX FOR OTHER COLLECTIONS-->
+                <select style="display: none;" class='collection_selection_box'>
+                    {% for other_collection in other_collections %}
+                        <option value={{other_collection.slug}}>{{other_collection.title}}</option>
+                    {% endfor %}
+                </select>
+                <input class="submit_button" type="submit" value="Submit.">
+                
+            </div>
+            <br>
+            <input type="checkbox" class="select_all_checkboxes" style="margin-left: 0.5%; display: inline;"></input>
+        {% endif %}
+
+        <div class = 'album_list'>
+            {% for album in albums %}
+            
+                <li class = 'album'>
+                    <img src={{ album.album_art_url}} style="float:left;" class="album_art">
+                    <div class='album_text_box'>
+                        {% if album.review == None and album.score == None %}
+                            <p class='album_text'>{% return_album_text album.title album.creator%}</p>
+                        {% else %}
+                            <a class="album_link" href={% return_review_link owner album.slug %}>{% return_album_text album.title album.creator%}</a>
+                        {% endif %}
+                        <br>
+                        
+                        {% if is_owner %}
+                            <a class ="mini_link" href='{% return_album_edit_link album.slug%}'>Edit Album.</a>
+                            <input type="checkbox" class="album_checkbox_selector" value ={{album.slug }} style="margin-left: 4%; display: inline;"></input>
+                        {% endif %}
+                        
+                    </div>
+
+                </li>
+            {% endfor %}
+        </div>
+        {% if is_owner %}
+            <a style="display:block; padding-top: 2%;"class ="mini_link" href='{% return_album_edit_link '' %}'>Add Album.</a>
+        {% endif %}
+        <br>
+        <a class="big_link" href="javascript:history.back()">Go Back</a>
+    </body>
+</html>

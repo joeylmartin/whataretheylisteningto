@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load custom_tags %}
+        {% load static %}
+        <title>{{list.title}}</title>
+        <link rel='stylesheet' href="{% static 'styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8653552101289613"
+        crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>{{ list.title }}</h1>
+        <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+        {% for album_object in list.album_objects %}
+            <div class = 'album'>
+                {% with album=album_object.album %}
+                <img src={{ album.album_art_url}} style="float:left;" class="album_art">
+                <div class='album_text_box'>
+                    {% if album.review == None or album.score == None %}
+                        <p class='album_text'>{% return_album_text album.title album.creator%}</p>
+                    {% else %}
+                        <a class="album_link" href={% return_review_link owner album.slug %}>{% return_album_text album.title album.creator%}</a>
+                    {% endif %}
+                    <br>
+    
+                </div>
+                {% endwith %}
+            </div>
+            <h3>{{album_object.blurb|safe}}</h3>
+        {% endfor %}
+        <br>
+        <a class="big_link" href="javascript:history.back()">Go Back</a>
+    
+    </body>
+</html>

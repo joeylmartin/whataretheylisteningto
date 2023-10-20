@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    {% load custom_tags %}
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'home_page.css' %}">
+    <title>All Listening Series.</title>
+    <h1>Listening Series:</h1>
+    <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+    <br>
+    {% for collection in collections %}
+
+        <a class="big_link" href={% return_collection_slug owner collection.slug %}>{{collection.title}}</a>
+        <br>
+    {% endfor %}
+    <br>
+    <a class="big_link" href="javascript:history.back()">Go Back</a>
+</html>

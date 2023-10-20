@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      {% load custom_tags %}
+      {% load static %}
+      
+      <link rel='stylesheet' href="{% static 'registration.css' %}">
+      <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script src="{% static 'scripts.js' %}"></script>
+  </head>
+
+  <body>
+    <h1>Log In.</h1>
+    <title>Log In.</title>
+    <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input class="submit_button" type="submit" value="Submit.">
+    </form>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    {% load custom_tags %}
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'home_page.css' %}">
+    <title>{{title}}</title>
+    <h1>{{ title }}</h1>
+    <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+    
+        {% for album in albums %}
+        
+        
+            <div class = 'album'>
+                <img src={{ album.album_art_url}} style="float:left;" class="album_art">
+                    {% if album.review == None or album.score == None %}
+                        <h2>{% return_album_text album.title album.creator%}</h2>
+                    {% else %}
+                        <a class="album_link" href={% return_review_link album.slug %}>{% return_album_text album.title album.creator%}</a>
+                    {% endif %}
+            </div>
+        
+    
+    {% endfor %}
+    
+    <a class="big_link" href="javascript:history.back()">Go Back</a>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load custom_tags %}
+        {% load static %}
+        <title>What is this site?</title>    
+        <link rel='stylesheet' href="{% static 'styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    </head>
+    
+    <body>
+        <h1>What is this site?</h1>
+        <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+        <br>
+        <h2 style="font-size: 3vmin;">
+            whataretheylisteningto.com is an album-centric music tracking site.
+            <br>
+            Akin to what you might do with tracks, you can organize Albums into listening series(ex. Summer 2021), or lists(Top Hip-Hop Albums of 2021).
+            <br>
+            In addition, you can leave reviews of albums, and keep a backlog with a public suggestion form.
+            <br>
+            <br>
+            This site was originally created by Joey Martin as whatsjoeylisteningto.com, a site that allowed him to share and organize all of the album he has listened to.
+            With the help and suggestions of fellow music fans, this service went public and now exists as it does today.
+            <br>
+            <a class="mini_link" style="padding: 0%;" href='/support-the-creator'>Support the creator.</a>
+        </h2>
+        <a class="big_link" href="javascript:history.back()">Go Back</a>
+    </body>
+</html>
+

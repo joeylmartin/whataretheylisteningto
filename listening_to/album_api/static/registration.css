@@ -1,0 +1,66 @@
+@font-face {
+    font-family: helvetica_bold;
+    src: url("//db.onlinewebfonts.com/t/f7d1b2995a6dff7abcda304d226aa67d.eot");
+  }
+
+body {
+    background-color: #dbe3e3;
+    padding-left: 4%;
+    margin: 5%;
+}
+.bar {
+    padding-top: 4%;
+    width: 50vmin;
+    padding-bottom: 4%;
+}
+h1 {
+    padding-top: 9%;
+    text-align: left;
+    font-family: Helvetica;
+    font-size: 7.5vmin;
+    letter-spacing: -0.03em;
+    font-weight: 900;
+    color: #0b4616;
+    vertical-align: middle;
+}
+p {
+    margin: 0%;
+}
+input {
+    margin-top: 2%;
+    border-width: 0px;
+    height: 5vmin;
+    font-size: 3vmin;
+    font-family: Helvetica;
+    font-weight: 900;
+    color: #0b4616;
+}
+form {
+    color: #0b4616;
+    font-size: 3vmin;
+    font-family: Helvetica;
+    font-weight: 900;
+}
+.submit_button {
+    margin-top: 3%;
+    background-color: #3cb878;
+    border: none;
+    padding: 0.7% 1% 1% 1%;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 3vmin;
+    font-family: Helvetica;
+    font-weight: 900;
+}
+.helptext {
+    display: block;
+    margin-top: 2%;
+    font-size: 2vmin;
+    color: #0b4616;
+}
+li {
+    color: #0b4616;
+    font-size: 2vmin;
+    list-style-type: square;
+}

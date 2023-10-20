@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load custom_tags %}
+        {% load static %}
+        
+        <link rel='stylesheet' href="{% static 'styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="{% static 'form_scripts.js' %}"></script>
+        <script src="{% static 'delete_scripts.js' %}"></script>
+    </head>
+    
+    <body>
+        {% if album == None %}
+            <title>Add Album.</title>
+            <h1>Add Album.</h1>
+            <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+            <br>
+            <image class="album_art" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Icon-round-Question_mark.svg/1200px-Icon-round-Question_mark.svg.png"></image>
+        
+        {% else %}
+            <title>Edit Album.</title>
+            <h1>Edit Album.</h1>
+            <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+            <br>
+            <image class="album_art" src={{ album.album_art_url}}></image>
+        {% endif %}
+
+        <form method="post" class='album_form'>
+            {% csrf_token %}
+            {{ form.collection.label  }}
+            {{ form.collection  }}
+            <br>
+            {{ form.title.label  }}
+            {{ form.title  }}
+            <br>
+            {{ form.creator.label  }}
+            {{ form.creator  }}
+            <br>
+            <br>
+            {{ form.listening_to.label  }}
+            {{ form.listening_to  }}
+            <br>
+            <p id='album_art_url_label' hidden >{{ form.album_art_url.label}}</p>
+            {{ form.album_art_url }}
+            <br>
+            {{ form.review.label  }}
+            <br>
+            {{ form.review  }}
+            <br>
+            {{ form.score.label }}
+            {{ form.score }}
+            <br>
+            <input class="submit_button" type="submit" value="Submit.">
+
+        </form>
+        {% if album != None %}
+            <button class="delete_button" onclick="delete_object('album','{{album.slug}}')">Delete.</button>
+        {% endif %}
+        <br>
+        <a class="big_link" href="javascript:history.back()">Go Back</a>
+    </body>
+</html>
+

@@ -1,0 +1,39 @@
+.album_container {
+    height: inherit;
+    width: inherit;
+    background-color: aqua;
+    display: inline-block;
+}
+#med {
+    height: 16.6667vmin;
+    width: 16.66667vmin;
+}
+#small {
+    height: 10vmin;
+    width: 10vmin;
+}
+
+#big_album_grid {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+#med_album_grid {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 16.6667vmin;
+    width: 16.66667vmin;
+}
+#small_album_grid {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 10vmin;
+    width: 10vmin;
+}
+.album_element {
+    width: inherit;
+    height: inherit;
+}
+.album_art {
+    width: inherit;
+    height: inherit;
+}

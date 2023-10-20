@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load custom_tags %}
+        {% load static %}
+
+        <link rel='stylesheet' href="{% static 'styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="{% static 'form_scripts.js' %}"></script>
+        <script src="{% static 'delete_scripts.js' %}"></script>
+    </head>
+
+    <body>
+        {% if collection == None %}
+            <title>Add Collection.</title>
+            <h1>Add Collection.</h1>
+            <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+            <br>
+        
+        {% else %}
+            <title>Edit Collection.</title>
+            <h1>Edit Collection.</h1>
+            <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+            <br>
+        {% endif %}
+
+        <form method="post" class='collection_form'>
+            {% csrf_token %}
+            {{ form.title.label}}
+            {{ form.title  }}
+            <br>
+            {{form.start_date.label}}
+            {{form.start_date}}
+            <br>
+            <input class="submit_button" type="submit" value="Submit.">
+        </form>
+        {% if collection != None %}
+            <button class="delete_button" onclick="delete_object('collection','{{collection.slug}}')">Delete.</button>
+            {% endif %}
+        <br>
+        <a class="big_link" href="javascript:history.back()">Go Back</a>
+    </body>
+</html>
+

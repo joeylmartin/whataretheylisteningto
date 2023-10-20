@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load custom_tags %}
+        {% load static %}
+        <title>All Lists.</title>
+        <link rel='stylesheet' href="{% static 'styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    </head>
+    
+    <body>
+        <h1>All lists.</h1>
+        <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+        <br>
+        {% for list in lists %}
+            <a class="big_link" href={% return_list_link owner list.slug %}>{{list.title}}</a>
+            <br>
+            {% if is_owner %}
+                <a class ="mini_link" href='{% return_list_edit_link list.slug%}'>Edit.</a>
+                <br>
+            {% endif %}
+        {% endfor %}
+        <br>
+        <a class="big_link" href="javascript:history.back()">Go Back</a>
+    </body>
+</html>

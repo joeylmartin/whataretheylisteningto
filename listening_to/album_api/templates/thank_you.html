@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load custom_tags %}
+        {% load static %}
+        <title>Thanks.</title>
+        <link rel='stylesheet' href="{% static 'styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    </head>
+
+    <body>
+        <h1>Thanks for submitting.</h1>
+        <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+        <br>
+        <a class="big_link" href={% return_user_page_link user.username %}>Return to your page.</a>
+    </body>
+    
+</html>
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load custom_tags %}
+        {% load static %}
+
+        <link rel='stylesheet' href="{% static 'styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+        <script src="{% static 'list_form_scripts.js' %}"></script>
+        <script src="{% static 'delete_scripts.js' %}"></script>
+    </head>
+    <body>
+        {% if list == None %}
+            <title>Add List.</title>
+            <h1>Add List.</h1>
+        {% else %}
+            <title>Edit List.</title>
+            <h1>Edit List.</h1>
+        {% endif %}
+        <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+        <br>
+
+        <form id="form-container" method="POST">
+            {% csrf_token %}
+            {{list_form}}
+            {{ object_formset.management_form }}
+            {% for form in object_formset %}
+                <div class="list_object_form">
+                    {{form.as_p}}
+                    <!--<button class="delete_form" type="button">Delete form.</button>-->
+                </div>
+            {% endfor %}
+            <button class="submit_button" id="add-form" type="button">Add album to list.</button>
+            <br>
+            <button class="submit_button" type="submit">Submit.</button>
+        </form>
+
+        <script>
+            $("#add-form").click(function(){
+                load_form('','','');
+            });
+            $(document).on('click', '#delete_form', function() {
+                delete_form($(this).parent());
+            });
+            $(document).on('change','.artist_field', function() {
+                load_album_choices($(this));
+            });
+        </script>   
+        
+        {% if list != None %}
+            <button class="delete_button" onclick="delete_object('list','{{list.slug}}')">Delete.</button>
+            {% for list_object in list.album_objects %}
+                <script>
+                    load_form("{{list_object.album.creator}}",
+                    '{{list_object.album.slug}}',
+                    "{{list_object.blurb|safe}}"
+                    );
+                </script>
+            {% endfor %}
+            <script>
+                //delete og form instance + first delete button.
+                $(".list_object_form:first").remove();
+                $("#delete_form:first").remove();
+                $('.list_title').val("{{list.title|safe}}");
+            </script>
+            <!--Remember to delete first form, find with jquery.-->
+        {% endif %}
+        <br>
+        <a class="big_link" href="javascript:history.back()">Go Back</a>
+    </body>
+</html>

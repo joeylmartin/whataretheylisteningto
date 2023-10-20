@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load custom_tags %}
+        {% load static %}
+        <title>Support the creator.</title>    
+        <link rel='stylesheet' href="{% static 'styles.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    </head>
+    
+    <body>
+        <h1>Support the creator.</h1>
+        <img class = 'bar', src="{% static 'colorbarthing.png' %}">
+        <br>
+        <h2 style="font-size: 3vmin;">
+            <img class = 'me', style="object-fit: cover; height: 40vh; width: 30vw;" src="{% static 'me.jpg' %}"><br><br>
+            Hi there, I'm Joey (he/him). I'm a music fan like yourself.  My favorite creators are The Beatles, Pink Floyd, Radiohead, Death Grips, Danny Brown, The Beach Boys, etc.
+            <br><br>
+            The services provided by this site are completely free to all users, and ad-free. I would like to keep it this way. 
+            Hosting sites is never free, and as just a student, it's expensive.
+            <br>
+            I never want to force anyone to pay to join this site-- but supporting this site would be helpful not only to me, but especially to other music fans.
+            <br><br>
+            If you want to support this site financially, you can donate to my Paypal<a href='https://paypal.me/josephmartin9000?locale.x=en_US'> here.</a>
+            
+            <br>
+            If not, the other way you can support this site is to spread the word! Tell your friends, family and other music fans. Building (some kind of) a community is the most valuable thing this site can provide.
+        </h2>
+        <a class="big_link" href="javascript:history.back()">Go Back</a>
+    </body>
+</html>
+
